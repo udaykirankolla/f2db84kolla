@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{"Door_Name": "philphs", "Door_Company": "Woodland","Door_Size":12},{"Door_Name": "hughes", "Door_Company": "woodfarm", "Door_Size": 13},{"Door_Name": "hardend", "Door_Company": "Premier Doors", "Door_Size": 15}]
+  div.container-fluid 
+    div.row 
+        each item, index in results
+            div.col-sm-2(onclick=`buy(${index})`) Door Name: #{item["Door_Name"]} <br> Door Company: #{item["Door_Company"]} <br> Door Size: #{item["Door_Size"]}
+  script.
+    function buy(index) {
+      alert("You purchased item " + index)
+    }
