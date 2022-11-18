@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if(toShow == null)
+    h2 No instance to update
+ else
+ - let Doorid = toShow._id
+ - let Door_Name = toShow.Door_Name
+ - let Door_company = toShow.Door_company
+ - let Door_size = toShow.Door_size
+ div
+ div.row
+  div(class='DoorAttr mr-3') Door ID is:
+  div #{Doorid}
+ div.row
+ div(class='DoorAttr mr-3') Door Name is:
+ div #{Door_Name}
+ div.row
+ div(class='DoorAttr mr-3') Door company is:
+ div #{Door_company}
+ div.row
+ div(class='DoorAttr mr-3') Door size is:
+ div #{Door_size}

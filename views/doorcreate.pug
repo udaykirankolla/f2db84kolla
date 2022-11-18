@@ -1,0 +1,28 @@
+extends layout
+block content
+ h1= title
+ form(id='DoorForm', action="/resource/Door", method="POST")
+  div.form-group
+   label.DoorAttr(for='Door_Name') Door Name
+   input#Door_Name(type='text', name='Door_Name')
+  div.form-group
+   label.DoorAttr(for='Door_Company') Door Company
+   input#Door_Company(type='text', name='Door_Company')
+  div.form-group
+   label.DoorAttr(for='Door_Size') Door Size
+   input#Door_Size(type='text', name='Door_Size')
+  input(type="submit")
+ script.
+  document.forms['DoorForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) 
+    }).then((resp) => {
+        return resp.json();
+    }).then((body) => {
+        alert("Save succeded")
+    }).catch((error) => {
+        alert("Save failed " + error )
+    });
+   }); 

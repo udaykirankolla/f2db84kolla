@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1= title
+
+  if(toShow == null)
+    h2 No instance to delete
+  else
+    - let Doorid = toShow._id
+    - let Door_Name = toShow.Door_Name
+    - let Door_Company = toShow.Door_company
+    - let Door_Size = toShow.Door_size
+    - let actionid = "/resource/Door/" + Doorid
+    script let actionid = "#{actionid}"
+    div
+     div.row 
+      div(class='DoorAttr mr-3') Door ID is:
+      div #{Doorid}
+     div.row
+      div(class='DoorAttr mr-3') Door Name is:
+      div #{Door_Name}
+     div.row
+      div(class='DoorAttr mr-3') Door Company is:
+      div #{Door_Company}
+     div.row
+      div(class='DoorAttr mr-3') Door Size is:
+      div #{Door_Size}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+  script.
+   function cancel() {
+    window.location.href='/Doors'
+    }
+  script.
+    function deleteOnid() {
+     console.log("starting delete")
+     fetch(actionid, {
+      method: 'DELETE'
+     }).then((resp) => {
+        return resp.json();
+     }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/Door'
+     }).catch((error) => {
+        alert("Delete failed " + error )
+     });
+    }
+
+    
